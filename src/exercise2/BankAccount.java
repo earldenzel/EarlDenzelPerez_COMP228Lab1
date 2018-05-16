@@ -18,21 +18,34 @@ package exercise2;
 public class BankAccount {
     private String bankAccountNumber;
     private String ownerName;
-    private float balance;
+    private double balance;
 
-    public BankAccount(String bankAccountNumber, String ownerName, float balance) {
+    public BankAccount(String bankAccountNumber, String ownerName, double balance) {
         this.bankAccountNumber = bankAccountNumber;
         this.ownerName = ownerName;
         this.balance = balance;
     }
 
-    private String WithdrawMoney(float withdrawal){
-        if (withdrawal > balance){
+    public String WithdrawMoney(double withdrawal){
+        if (withdrawal <= 0){
+            return String.format("You cannot withdraw zero or negative money. %nYour balance is still $%.2f", balance);
+        }
+        else if (withdrawal > balance){
             return String.format("Balance is not enough to withdraw $%.2f. Your balance is still $%.2f", withdrawal, balance);
         }
         else {
             balance -= withdrawal;
-            return String.format("%.2f has been withdrawn. Your new balance is %.2f", withdrawal, balance);
+            return String.format("$%.2f has been withdrawn. Your new balance is $%.2f", withdrawal, balance);
+        }
+    }
+
+    public String DepositMoney(double deposit){
+        if (deposit <= 0){
+            return String.format("You cannot deposit zero or negative money. %nYour balance is still $%.2f", balance);
+        }
+        else{
+            balance += deposit;
+            return String.format("$%.2f has been deposited. Your new balance is $%.2f", deposit, balance);
         }
     }
 
@@ -44,7 +57,7 @@ public class BankAccount {
         return ownerName;
     }
 
-    public float getBalance() {
+    public double getBalance() {
         return balance;
     }
 
