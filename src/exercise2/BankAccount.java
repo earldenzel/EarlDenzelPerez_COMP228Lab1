@@ -49,6 +49,10 @@ public class BankAccount {
         }
     }
 
+    public String AccountDetails(){
+        return String.format("Account Number: %s%nOwner: %s%nBalance: $%.2f", getBankAccountNumber(),getOwnerName(),getBalance());
+    }
+
     public String getBankAccountNumber() {
         return bankAccountNumber;
     }
