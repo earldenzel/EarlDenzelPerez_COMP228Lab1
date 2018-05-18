@@ -17,4 +17,9 @@ public class Coordinate {
         return y;
     }
 
+    //return nicely formatted string in the form of (x, y) with precision of 2 decimal places
+    public String getCoordinates(){
+        return String.format("(%.2f, %.2f)", getX(), getY());
+    }
+
 }

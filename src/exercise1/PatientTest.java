@@ -9,28 +9,39 @@ public class PatientTest {
         JFrame frame = new JFrame();
         int patientID = 0;
         boolean askNumberAgain = true;
+        Patient patient = new Patient();
 
-        //i want to force patient ID as a number
-        while (askNumberAgain) {
-            try {
-                patientID = Integer.parseInt(JOptionPane.showInputDialog("Input patient ID"));
-                askNumberAgain = false;
-            } catch (Exception e){
-                JOptionPane.showMessageDialog(frame,"Your patient ID should be a number. You will be asked to input patient ID again.");
-                askNumberAgain = true;
+        //ask whether user wants to input data or not
+        int selectedOption = JOptionPane.showConfirmDialog(null,
+                "Use default data?",
+                "Hello",
+                JOptionPane.YES_NO_OPTION);
+        boolean defaultData = (selectedOption == JOptionPane.YES_OPTION);
+
+        //if user opts to input data
+        if (!defaultData) {
+            //i want to force patient ID as a number
+            while (askNumberAgain) {
+                try {
+                    patientID = Integer.parseInt(JOptionPane.showInputDialog("Input patient ID"));
+                    askNumberAgain = false;
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(frame, "Your patient ID should be a number. You will be asked to input patient ID again.");
+                    askNumberAgain = true;
+                }
             }
+
+            //ask patient details;
+            String firstName = JOptionPane.showInputDialog("Please input first name");
+            String lastName = JOptionPane.showInputDialog("Please input last name?");
+            String firstLineAddress = JOptionPane.showInputDialog("Please input first line of your address");
+            String cityName = JOptionPane.showInputDialog("Please input city");
+            String provinceName = JOptionPane.showInputDialog("Please input province");
+            String postalCode = JOptionPane.showInputDialog("Please input postal code");
+
+            //create patient object via constructor
+            patient = new Patient(patientID, firstName, lastName, firstLineAddress, cityName, provinceName, postalCode);
         }
-
-        //ask patient details;
-        String firstName = JOptionPane.showInputDialog("Please input first name");
-        String lastName = JOptionPane.showInputDialog("Please input last name?");
-        String firstLineAddress = JOptionPane.showInputDialog("Please input first line of your address");
-        String cityName = JOptionPane.showInputDialog("Please input city");
-        String provinceName = JOptionPane.showInputDialog("Please input province");
-        String postalCode = JOptionPane.showInputDialog("Please input postal code");
-
-        //create patient object via constructor
-        Patient patient = new Patient(patientID,firstName,lastName,firstLineAddress,cityName,provinceName,postalCode);
 
         //show patient info as message
         JOptionPane.showMessageDialog(frame, patient.getPatientInfo());

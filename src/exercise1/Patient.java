@@ -39,6 +39,17 @@ public class Patient {
         this.postalCode = postalCode;
     }
 
+    //default constructor
+    public Patient(){
+        this.patientID = 1;
+        this.firstName = "Earl Denzel";
+        this.lastName= "Perez";
+        this.address = "941 Progress Ave.";
+        this.city = "Scarborough";
+        this.province = "ON";
+        this.postalCode = "M1G 3T8";
+    }
+
     public int getPatientID() {
         return patientID;
     }

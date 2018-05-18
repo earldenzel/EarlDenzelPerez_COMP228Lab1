@@ -16,14 +16,17 @@ package exercise2;
 */
 
 public class BankAccount {
-    private String bankAccountNumber;
+    private String bankAccountNumber; //string is used because default bank account number may start with 0
     private String ownerName;
     private double balance;
 
+    //constructor
     public BankAccount(String bankAccountNumber, String ownerName, double balance) {
         this.bankAccountNumber = bankAccountNumber;
         this.ownerName = ownerName;
-        this.balance = balance;
+        if (balance >= 0.0) {
+            this.balance = balance;
+        }
     }
 
     public String WithdrawMoney(double withdrawal){
@@ -49,7 +52,7 @@ public class BankAccount {
         }
     }
 
-    public String AccountDetails(){
+    public String getAccountInfo(){
         return String.format("Account Number: %s%nOwner: %s%nBalance: $%.2f", getBankAccountNumber(),getOwnerName(),getBalance());
     }
 
